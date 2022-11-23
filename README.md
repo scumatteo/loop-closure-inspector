@@ -37,12 +37,9 @@ Contrary to the previous example, in this case the robot returns to a place but 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/no_loop.png?raw=true)
 
 # Requirements
-- numpy
-- pandas
-- argparse
-- configparser
-- scikit-learn
-- grispy
+To install the requirements use the following command
+<pip install -r requirements.txt>
+
 
 # How to use it
 You can simply clone the repository and launch the *main.py* inside the folder */src/*.
