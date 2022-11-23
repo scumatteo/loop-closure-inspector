@@ -90,7 +90,7 @@ Example with the sequence 00 of the KITTI dataset. The red points are the poses 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/kitti_00_loop.png?raw=true)
 
 ### Test with KITTI sequence 08
-Example with the sequence 08 of the KITTI dataset. In this case the camera returns more times to the same places, but it moves in a different direction, therefore no loop closure is detected.
+Example with the sequence 08 of the KITTI dataset. In this case the camera returns more times to the same places, but it moves with a different orientation, therefore no loop closure is detected.
 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/kitti_08_loop.png?raw=true)
 
