@@ -3,7 +3,9 @@
 Package to create a ground truth for the Loop Closures in a map, given a ground truth of the poses.
 
 # How it works
-The tool detect a loop closure in 2D (for now), given a set of ground truth poses. For each pose, it checks if there are any poses closer than a certain radius. If there are any, for each of these it checks if the difference between the 1D orientations (with respect to the 2D plane) are less than a certain angle and if there is a minimum time between the two poses.
+The tool detect a loop closure in 2D (for now), given a set of ground truth poses. 
+
+For each pose, it checks if there are any poses closer than a certain radius. If there are any, for each of these it checks if the difference between the 1D orientations (with respect to the 2D plane) are less than a certain angle and if there is a minimum time between the two poses.
 
 If the above conditions are met, it means that there are two (or more) poses that have the same coordinates and the same orientation, so the robot (or the camera) retrace the same path moving in the same direction as in the past, effectively closing a loop.
 
@@ -37,19 +39,52 @@ Contrary to the previous example, in this case the robot returns to a place but 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/no_loop.png?raw=true)
 
 # Requirements
-- numpy
-- pandas
-- argparse
-- configparser
-- scikit-learn
-- grispy
+To install the requirements use the following command:
+```
+pip install -r requirements.txt
+```
 
 # How to use it
-You can simply clone the repository and launch the *main.py* inside the folder */src/*.
+You can simply clone the repository and launch the *main.py* inside the folder */src/* with the command
+```
+python src/main.py --cfg /cfg/config.cfg --input /path/to/poses/ground/truth/ --output /path/to/output/folder
+```
 
+## Configurations
 Inside the folder */cfg/* there are two files:
 - **config.cfg** to set the configurations for the ground truth to create.
 - **test.cfg** to display the ground truth created.
+
+### config.cfg
+This file contains the default settings for different datasets. 
+
+Six parameters must be set, according to the dataset used:
+- **distance_lower_bound** the lower bound for radius search in meters
+- **distance_upper_bound** the upper bound for radius search in meters
+- **n_frame_since_last** the number of frame that must occur between two loop closures
+- **translation_axis** the axis to consider for the 2D loop closure
+- **rotation_axis** the axis to consider for the angle
+- **max_angular_difference** the maximum angle difference
+
+### test.cfg
+In this file, only the translation_axis are set, depending on the dataset, in order to display the results.
+
+## Input
+The input is the path to the ground truth of the poses.
+
+## Outputs
+It outputs three files:
+- **matrix.npy** a matrix of shape NxN where N is the number of poses. Each cell contains 0 if the poses i,j are not considered loop closure, 1 if they are
+- **matrix.txt** same as above
+- **pairs.txt** a set of tuple with the indexes of the poses that are loop closures
+
+## Test
+To run the test, after the creation of the three outputs, the following command can be used
+```
+python src/test.py --cfg /cfg/test.cfg --input-pairs /path/to/output/pairs/ --input-poses /path/to/poses/ground/truth/
+```
+
+
 
 
 
