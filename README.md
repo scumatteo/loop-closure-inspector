@@ -11,11 +11,6 @@ If the above conditions are met, it means that there are two (or more) poses tha
 
 The **distance_upper_bound** (the radius), the **max_angular_difference** (the angle) and the **n_frame_since_last** (the time span) must be set according to the dataset used. For example, for the KITTI dataset, that is an outdoor dataset, captured at 10fps with a car, the radius can be set to 1mt, the angle to 20° and the time span to 100 (100 frame at 10fps = 10seconds must be passed between to poses in order to consider them as a possible closure, in order to discard pose that are closer in space but captured too near in time, as for example if the camera is stationary in one point).
 
-It outputs three files:
-- **matrix.npy** a matrix of shape NxN where N is the number of poses. Each cell contains 0 if the poses i,j are not considered loop closure, 1 if they are;
-- **matrix.txt** same as above;
-- **pairs.txt** a set of tuple with the indexes of the poses that are loop closures.
-
 
 ## Example
 
@@ -52,7 +47,7 @@ pip install -r requirements.txt
 # How to use it
 You can simply clone the repository and launch the *main.py* inside the folder */src/* with the command
 ```
-python src/main.py --cfg /path/to/configuration/file --input /path/to/poses/ground/truth/ --output /path/to/output/folder
+python src/main.py --cfg /cfg/config.cfg --input /path/to/poses/ground/truth/ --output /path/to/output/folder
 ```
 
 ## Configurations
@@ -73,6 +68,23 @@ Six parameters must be set, according to the dataset used:
 
 ### test.cfg
 In this file, only the translation_axis are set, depending on the dataset, in order to display the results.
+
+## Input
+The input is the path to the ground truth of the poses.
+
+## Outputs
+It outputs three files:
+- **matrix.npy** a matrix of shape NxN where N is the number of poses. Each cell contains 0 if the poses i,j are not considered loop closure, 1 if they are
+- **matrix.txt** same as above
+- **pairs.txt** a set of tuple with the indexes of the poses that are loop closures
+
+## Test
+To run the test, after the creation of the three outputs, the following command can be used
+```
+python src/test.py --cfg /cfg/test.cfg --input-pairs /path/to/output/pairs/ --input-poses /path/to/poses/ground/truth/
+```
+
+
 
 
 
