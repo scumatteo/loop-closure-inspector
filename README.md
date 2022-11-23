@@ -9,7 +9,23 @@ If the above conditions are met, it means that there are two (or more) poses tha
 
 The **distance_upper_bound** (the radius), the **max_angular_difference** (the angle) and the **n_frame_since_last** (the time span) must be set according to the dataset used. For example, for the KITTI dataset, that is an outdoor dataset, captured at 10fps with a car, the radius can be set to 1mt, the angle to 20° and the time span to 100 (100 frame at 10fps = 10seconds must be passed between to poses in order to consider them as a possible closure, in order to discard pose that are closer in space but captured too near in time, as for example if the camera is stationary in one point).
 
+To a better understanding, consider the following example.
+
+A ground truth of the poses is given, corresponding to the path below (the blue line). The arrow shows the direction of the robot while the red point is the pose to which the algorithm is searching a possible loop closure.
+
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop.png?raw=true)
+
+First, a search on a radius distance is done. So every point outside the red circle can be discarded.
+
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_radius.png?raw=true)
+
+Second, a search on the orientation is done. Only the points inside the circle with the same orientation of the point are kept.
+
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_angle.png?raw=true)
+
+Lastly, only the poses occurred after o before n frame are kept, in order to discard points that are close in time but not loop closures.
+
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_final.png?raw=true)
 
 # How to use it
 You can simply clone the repository and launch the *main.py* inside the folder */src/*.
