@@ -14,7 +14,7 @@ The **distance_upper_bound** (the radius), the **max_angular_difference** (the a
 
 To a better understanding, consider the following example.
 
-A ground truth of the poses is given, corresponding to the path below (the blue line). The arrow shows the direction of the robot while the red point is the pose to which the algorithm is searching a possible loop closure.
+A ground truth for the poses is given, corresponding to the path below (the blue line). The arrow shows the direction of the robot while the red point is the pose to which the algorithm is searching a possible loop closure.
 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop.png?raw=true)
 
@@ -26,7 +26,7 @@ Second, a search on the orientation is done. Only the points inside the circle w
 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_angle.png?raw=true)
 
-Lastly, only the poses occurred after o before n frame are kept, in order to discard points that are close in time but not loop closures.
+Lastly, only the poses occurred after o before n frame are kept, in order to discard points that are close in time but not loop closures. The green poses are the candidates that can be considered loop closures for the red point.
 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_final.png?raw=true)
 
