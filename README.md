@@ -85,6 +85,8 @@ python src/test.py --cfg /cfg/test.cfg --input-pairs /path/to/output/pairs/ --in
 ```
 
 ### Test with KITTI sequence 00
+Example with the sequence 00 of the KITTI dataset. The red points are the poses in which the camera pass a second time, in the same direction. So they are the loop closures matches.
+
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/kitti_00_loop.png?raw=true)
 
 
