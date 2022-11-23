@@ -38,7 +38,7 @@ class OpenLorisDataset():
         """
         rotations = poses[self.OPENLORIS_ROT_COL_NAMES].to_numpy().reshape(len(poses), 4)
         rotations = R.from_quat(rotations)
-        rotations = rotations.as_euler('xyz', degrees=True) #* 180 / 3.14 #rad to deg
+        rotations = rotations.as_euler('xyz', degrees=True) 
         rotations = pd.DataFrame(rotations, columns=self.OPENLORIS_R_VEC_COL_NAMES)
         print(rotations)
         return rotations[rotation_axis].to_numpy()

@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from utils.rotations_utils import rotation_matrix_to_euler_angles
+from scipy.spatial.transform import Rotation as R
 
 class KITTIDataset():
     """
@@ -40,7 +40,8 @@ class KITTIDataset():
         Returns the angles as Euler angles for the given axis.
         """
         rotations = poses[self.KITTI_ROT_COL_NAMES].to_numpy().reshape(len(poses), 3, 3)
-        rotations = rotation_matrix_to_euler_angles(rotations) * 180 / 3.14 #rad to deg
+        rotations = R.from_matrix(rotations)
+        rotations = rotations.as_euler('xyz', degrees=True) 
         rotations = pd.DataFrame(rotations, columns=self.KITTI_R_VEC_COL_NAMES)
         return rotations[rotation_axis].to_numpy()
 
