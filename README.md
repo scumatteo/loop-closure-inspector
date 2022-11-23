@@ -5,11 +5,11 @@ Package to create a ground truth for the Loop Closures in a map, given a ground 
 # How it works
 The tool detect a loop closure in 2D (for now), given a set of ground truth poses. 
 
-For each pose, it checks if there are any poses closer than a certain radius. If there are any, for each of these it checks if the difference between the 1D orientations (with respect to the 2D plane) are less than a certain angle and if there is a minimum time between the two poses.
+For each pose, it checks if there are any poses closer than a certain radius. If there are any, for each of these it checks if the difference between the 1D orientations (with respect to the 2D plane) are less than a certain angle and if there is a minimum time span between the two poses.
 
 If the above conditions are met, it means that there are two (or more) poses that have the same coordinates and the same orientation, so the robot (or the camera) retrace the same path moving in the same direction as in the past, effectively closing a loop.
 
-The **distance_upper_bound** (the radius), the **max_angular_difference** (the angle) and the **n_frame_since_last** (the time span) must be set according to the dataset used. For example, for the KITTI dataset, that is an outdoor dataset, captured at 10fps with a car, the radius can be set to 1mt, the angle to 20° and the time span to 100 (100 frame at 10fps = 10seconds must be passed between to poses in order to consider them as a possible closure, in order to discard pose that are closer in space but captured too near in time, as for example if the camera is stationary in one point).
+The **distance_upper_bound** (the radius), the **max_angular_difference** (the angle) and the **n_frame_since_last** (the time span) must be set according to the dataset used. For example, for the KITTI dataset, that is an outdoor dataset, captured at 10fps with a car, the radius can be set to 1mt, the angle to 20° and the time span to 100 (100 frame at 10fps = 10seconds must be passed between two poses in order to consider them as a possible closure, in order to discard pose that are closer in space but captured too near in time, as for example if the camera is stationary in one point).
 
 
 ## Example
