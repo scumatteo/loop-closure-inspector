@@ -14,7 +14,7 @@ The **distance_upper_bound** (the radius), the **max_angular_difference** (the a
 It outputs three files:
 - **matrix.npy** a matrix of shape NxN where N is the number of poses. Each cell contains 0 if the poses i,j are not considered loop closure, 1 if they are;
 - **matrix.txt** same as above;
-- **pairs.txt** a set of tuple with the indeces of the poses that are loop closures.
+- **pairs.txt** a set of tuple with the indexes of the poses that are loop closures.
 
 
 ## Example
@@ -58,6 +58,20 @@ python src/main.py --cfg /path/to/configuration/file --input /path/to/poses/grou
 Inside the folder */cfg/* there are two files:
 - **config.cfg** to set the configurations for the ground truth to create.
 - **test.cfg** to display the ground truth created.
+
+## config.cfg
+This file contains the default settings for different datasets. 
+
+Six parameters must be set, according to the dataset used:
+- distance_lower_bound, the lower bound for radius search in meters
+- distance_upper_bound, the upper bound for radius search in meters
+- n_frame_since_last, the number of frame that must occur between two loop closures
+- translation_axis, the axis to consider for the 2D loop closure
+- rotation_axis, the axis to consider for the angle
+- max_angular_difference, the maximum angle difference
+
+## test.cfg
+In this file, only the translation_axis is set, depending on the dataset, in order to display the results.
 
 
 
