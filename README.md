@@ -11,10 +11,10 @@ If the above conditions are met, it means that there are two (or more) poses tha
 
 The **distance_upper_bound** (the radius), the **max_angular_difference** (the angle) and the **n_frame_since_last** (the time span) must be set according to the dataset used. For example, for the KITTI dataset, that is an outdoor dataset, captured at 10fps with a car, the radius can be set to 1mt, the angle to 20° and the time span to 100 (100 frame at 10fps = 10seconds must be passed between to poses in order to consider them as a possible closure, in order to discard pose that are closer in space but captured too near in time, as for example if the camera is stationary in one point).
 
-It saves three files:
-- matrix.npy a matrix of shape NxN where N is the number of poses. Each cell contains 0 if the poses i,j are not considered loop closure, 1 if they are;
-- matrix.txt same as above;
-- pairs.txt a set of tuple with the indeces of the poses that are loop closures.
+It outputs three files:
+- **matrix.npy** a matrix of shape NxN where N is the number of poses. Each cell contains 0 if the poses i,j are not considered loop closure, 1 if they are;
+- **matrix.txt** same as above;
+- **pairs.txt** a set of tuple with the indeces of the poses that are loop closures.
 
 
 ## Example
