@@ -38,7 +38,7 @@ Contrary to the previous example, in this case the robot returns to a place but 
 
 # Requirements
 To install the requirements use the following command
-<pip install -r requirements.txt>
+  <pip install -r requirements.txt>
 
 
 # How to use it
