@@ -67,9 +67,7 @@ def write(output_folder, pairs, dim):
         f.write("\n") 
             
 if __name__ == '__main__':
-    print("AAA")
     args, cfg = parse_arguments(sys.argv)
-    print("OK")
 
     #Load poses
     dataset = dataset_factory(cfg["settings"]["use"])
