@@ -55,11 +55,12 @@ You can simply clone the repository and launch the *main.py* inside the folder *
 python src/main.py --cfg /path/to/configuration/file --input /path/to/poses/ground/truth/ --output /path/to/output/folder
 ```
 
+## Configurations
 Inside the folder */cfg/* there are two files:
 - **config.cfg** to set the configurations for the ground truth to create.
 - **test.cfg** to display the ground truth created.
 
-## config.cfg
+### config.cfg
 This file contains the default settings for different datasets. 
 
 Six parameters must be set, according to the dataset used:
@@ -70,7 +71,7 @@ Six parameters must be set, according to the dataset used:
 - **rotation_axis** the axis to consider for the angle
 - **max_angular_difference** the maximum angle difference
 
-## test.cfg
+### test.cfg
 In this file, only the translation_axis are set, depending on the dataset, in order to display the results.
 
 
