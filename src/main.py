@@ -4,6 +4,7 @@ import sys
 
 from utils.argparse_utils import dir_path, file_path
 from datasets.KITTI_dataset import KITTIDataset
+from datasets.OpenLoris_dataset import OpenLorisDataset
 from distances.angular_distance import angular_distance_1D
 
 import grispy as gsp
@@ -40,10 +41,10 @@ def parse_arguments(argv):
 
 def dataset_factory(use):
     if use == "KITTI":
-            dataset = KITTIDataset()
+        dataset = KITTIDataset()
       
-    elif use == "TUM":
-        print("TUM")
+    elif use == "OPENLORIS":
+        dataset = OpenLorisDataset()
     
     return dataset
 
@@ -66,7 +67,9 @@ def write(output_folder, pairs, dim):
         f.write("\n") 
             
 if __name__ == '__main__':
+    print("AAA")
     args, cfg = parse_arguments(sys.argv)
+    print("OK")
 
     #Load poses
     dataset = dataset_factory(cfg["settings"]["use"])

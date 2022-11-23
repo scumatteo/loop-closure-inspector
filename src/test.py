@@ -4,9 +4,11 @@ import sys
 
 from utils.argparse_utils import dir_path, file_path
 from datasets.KITTI_dataset import KITTIDataset
-
+from datasets.OpenLoris_dataset import OpenLorisDataset
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('TKAgg')
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser(
@@ -36,10 +38,10 @@ def parse_arguments(argv):
 
 def dataset_factory(use):
     if use == "KITTI":
-            dataset = KITTIDataset()
+        dataset = KITTIDataset()
       
-    elif use == "TUM":
-        print("TUM")
+    elif use == "OPENLORIS":
+        dataset = OpenLorisDataset()
     
     return dataset
 
@@ -51,7 +53,7 @@ if __name__ == '__main__':
     poses = dataset.read_file(args.input_poses)
 
     #get translations to draw
-    translation_axis = cfg["settings"]["translation_axis"].split(",")
+    translation_axis = cfg[cfg["settings"]["use"]]["translation_axis"].split(",")
     translations = dataset.get_translations(poses, translation_axis)
 
     #read pairs
@@ -79,4 +81,4 @@ if __name__ == '__main__':
     x_coord = x[indices]
     y_coord = y[indices]
     plt.scatter(x_coord, y_coord, color = "red")
-    plt.show()
+    plt.savefig("img.png")
