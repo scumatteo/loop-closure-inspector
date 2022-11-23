@@ -79,4 +79,4 @@ if __name__ == '__main__':
     x_coord = x[indices]
     y_coord = y[indices]
     plt.scatter(x_coord, y_coord, color = "red")
-    plt.show()
+    plt.savefig("img.png")
