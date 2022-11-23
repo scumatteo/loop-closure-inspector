@@ -84,6 +84,8 @@ To run the test, after the creation of the three outputs, the following command 
 python src/test.py --cfg /cfg/test.cfg --input-pairs /path/to/output/pairs/ --input-poses /path/to/poses/ground/truth/
 ```
 
+### Test with KITTI sequence 00
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/kitti_00_loop.png?raw=true)
 
 
 
