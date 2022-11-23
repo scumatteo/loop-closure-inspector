@@ -63,15 +63,15 @@ Inside the folder */cfg/* there are two files:
 This file contains the default settings for different datasets. 
 
 Six parameters must be set, according to the dataset used:
-- distance_lower_bound, the lower bound for radius search in meters
-- distance_upper_bound, the upper bound for radius search in meters
-- n_frame_since_last, the number of frame that must occur between two loop closures
-- translation_axis, the axis to consider for the 2D loop closure
-- rotation_axis, the axis to consider for the angle
-- max_angular_difference, the maximum angle difference
+- **distance_lower_bound** the lower bound for radius search in meters
+- **distance_upper_bound** the upper bound for radius search in meters
+- **n_frame_since_last** the number of frame that must occur between two loop closures
+- **translation_axis** the axis to consider for the 2D loop closure
+- **rotation_axis** the axis to consider for the angle
+- **max_angular_difference** the maximum angle difference
 
 ## test.cfg
-In this file, only the translation_axis is set, depending on the dataset, in order to display the results.
+In this file, only the translation_axis are set, depending on the dataset, in order to display the results.
 
 
 
