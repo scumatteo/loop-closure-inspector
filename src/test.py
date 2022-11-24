@@ -2,9 +2,9 @@ import argparse
 import configparser
 import sys
 
-from utils.argparse_utils import dir_path, file_path
 from datasets.KITTI_dataset import KITTIDataset
 from datasets.OpenLoris_dataset import OpenLorisDataset
+from datasets.TUM_dataset import TUMDataset
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
@@ -31,6 +31,9 @@ def dataset_factory(use):
       
     elif use == "OPENLORIS":
         dataset = OpenLorisDataset()
+
+    elif use == "TUM":
+        dataset = TUMDataset()
     
     return dataset
 
@@ -39,14 +42,14 @@ if __name__ == '__main__':
 
     #read dataset
     dataset = dataset_factory(cfg["settings"]["use"])
-    poses = dataset.read_file(cfg["settings"]["input_poses"])
+    poses = dataset.read_file(cfg["settings"]["input-poses"])
 
     #get translations to draw
     translation_axis = cfg[cfg["settings"]["use"]]["translation_axis"].split(",")
     translations = dataset.get_translations(poses, translation_axis)
 
     #read pairs
-    f_pairs = open(cfg["settings"]["input_pairs"])
+    f_pairs = open(cfg["settings"]["input-pairs"])
     pairs = f_pairs.readlines()
     pairs = [pair.replace("\n", "") for pair in pairs]
     pairs = [tuple(map(int, pair.replace("(", "").replace(")", "").split(","))) for pair in pairs]

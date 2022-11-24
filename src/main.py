@@ -3,6 +3,7 @@ import configparser
 import sys
 from datasets.KITTI_dataset import KITTIDataset
 from datasets.OpenLoris_dataset import OpenLorisDataset
+from datasets.TUM_dataset import TUMDataset
 from distances.angular_distance import angular_distance_1D
 
 import grispy as gsp
@@ -33,6 +34,9 @@ def dataset_factory(use):
       
     elif use == "OPENLORIS":
         dataset = OpenLorisDataset()
+
+    elif use == "TUM":
+        dataset = TUMDataset()
     
     return dataset
 
@@ -71,6 +75,7 @@ if __name__ == '__main__':
     max_angular_difference = int(section["max_angular_difference"])
 
     translations = dataset.get_translations(poses, translation_axis)
+    print(translations)
     angles = dataset.get_angles(poses, rotation_axis)
 
     #euclidean distance to find the nn in a radius
