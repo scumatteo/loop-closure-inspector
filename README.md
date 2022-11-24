@@ -106,7 +106,7 @@ The tool is able to handle the following datasets:
 - [X] OpenLoris-Scene dataset
 - [X] TUM RGB-D dataset
 
-In the future new dataset will be added.
+In the future new datasets will be added.
 
 
 
