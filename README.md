@@ -44,6 +44,8 @@ To install the requirements use the following command:
 pip install -r requirements.txt
 ```
 
+This package uses **GriSPy** (https://github.com/mchalela/GriSPy) to perform an efficient search.
+
 # How to use it
 You can simply clone the repository and launch the *main.py* inside the folder */src/* with the command
 ```
