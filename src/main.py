@@ -1,8 +1,6 @@
 import argparse
 import configparser
 import sys
-
-from utils.argparse_utils import dir_path, file_path
 from datasets.KITTI_dataset import KITTIDataset
 from datasets.OpenLoris_dataset import OpenLorisDataset
 from distances.angular_distance import angular_distance_1D
@@ -23,21 +21,11 @@ def parse_arguments(argv):
     parser.add_argument(
         '--cfg', help='Configuration file path', required=True)
 
-     # Pose Graph File
-    parser.add_argument(
-        '--input', help='Input Pose Graph file path', required=True,
-        type=file_path)
-
-    # Output File
-    parser.add_argument(
-        '--output', help='Output folder to write to', required=True,
-        type=dir_path)
-
     args = parser.parse_args()
     
     cfg = configparser.ConfigParser()
-    cfg.read(args.cfg)
-    return args, cfg
+    cfg.read(args.cfg, encoding='utf8')
+    return cfg
 
 def dataset_factory(use):
     if use == "KITTI":
@@ -67,13 +55,11 @@ def write(output_folder, pairs, dim):
         f.write("\n") 
             
 if __name__ == '__main__':
-    args, cfg = parse_arguments(sys.argv)
+    cfg = parse_arguments(sys.argv)
 
     #Load poses
     dataset = dataset_factory(cfg["settings"]["use"])
-    poses = dataset.read_file(args.input)
-
-    print(poses.shape)
+    poses = dataset.read_file(cfg["settings"]["input"])
 
     #parse params for the dataset
     section = cfg[cfg["settings"]["use"]]
@@ -103,7 +89,7 @@ if __name__ == '__main__':
 
     print("Found " + str(len(good_pairs)) + " correspondences!")
 
-    write(args.output, good_pairs, len(poses))
+    write(cfg["settings"]["output"], good_pairs, len(poses))
             
     
     

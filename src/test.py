@@ -19,22 +19,11 @@ def parse_arguments(argv):
     parser.add_argument(
         '--cfg', help='Configuration file path', required=True)
 
-     # Loop Closure Pairs File
-    parser.add_argument(
-        '--input-pairs', help='Loop Closure Pairs file path', required=True,
-        type=file_path)
-
-     # Pose Graph File
-    parser.add_argument(
-        '--input-poses', help='Input Pose Graph file path', required=True,
-        type=file_path)
-
-
     args = parser.parse_args()
     
     cfg = configparser.ConfigParser()
     cfg.read(args.cfg)
-    return args, cfg
+    return cfg
 
 def dataset_factory(use):
     if use == "KITTI":
@@ -46,18 +35,18 @@ def dataset_factory(use):
     return dataset
 
 if __name__ == '__main__':
-    args, cfg = parse_arguments(sys.argv)
+    cfg = parse_arguments(sys.argv)
 
     #read dataset
     dataset = dataset_factory(cfg["settings"]["use"])
-    poses = dataset.read_file(args.input_poses)
+    poses = dataset.read_file(cfg["settings"]["input_poses"])
 
     #get translations to draw
     translation_axis = cfg[cfg["settings"]["use"]]["translation_axis"].split(",")
     translations = dataset.get_translations(poses, translation_axis)
 
     #read pairs
-    f_pairs = open(args.input_pairs)
+    f_pairs = open(cfg["settings"]["input_pairs"])
     pairs = f_pairs.readlines()
     pairs = [pair.replace("\n", "") for pair in pairs]
     pairs = [tuple(map(int, pair.replace("(", "").replace(")", "").split(","))) for pair in pairs]

@@ -23,7 +23,7 @@ class OpenLorisDataset():
 
     def read_file(self, input_file):
         poses = pd.read_csv(input_file, sep=' ', names=self.OPENLORIS_COL_NAMES)
-        print(poses)
+        poses = poses.iloc[1:, :] #first row discarded because it's the name of the columns
         return poses
 
     def get_translations(self, poses, translation_axis):
@@ -40,7 +40,6 @@ class OpenLorisDataset():
         rotations = R.from_quat(rotations)
         rotations = rotations.as_euler('xyz', degrees=True) 
         rotations = pd.DataFrame(rotations, columns=self.OPENLORIS_R_VEC_COL_NAMES)
-        print(rotations)
         return rotations[rotation_axis].to_numpy()
 
     
