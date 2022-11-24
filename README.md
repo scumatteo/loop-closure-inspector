@@ -102,9 +102,9 @@ Example with the sequence 08 of the KITTI dataset. In this case the camera retur
 
 ## Datasets available
 The tool is able to handle the following datasets:
-[X] KITTI odometry dataset
-[X] OpenLoris-Scene dataset
-[X] TUM RGB-D dataset
+- [X] KITTI odometry dataset
+- [X] OpenLoris-Scene dataset
+- [X] TUM RGB-D dataset
 
 In the future new dataset will be added.
 
