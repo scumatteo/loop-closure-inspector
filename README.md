@@ -49,7 +49,7 @@ This package uses **GriSPy** (https://github.com/mchalela/GriSPy) to perform an 
 # How to use it
 You can simply clone the repository and launch the *main.py* inside the folder */src/* with the command
 ```
-python src/main.py --cfg /cfg/config.cfg --input /path/to/poses/ground/truth/ --output /path/to/output/folder
+python src/main.py --cfg /cfg/config.cfg
 ```
 
 ## Configurations
@@ -60,6 +60,8 @@ Inside the folder */cfg/* there are two files:
 ### config.cfg
 This file contains the default settings for different datasets. 
 
+In the config.cfg you can set the dataset to use, the input file of the ground truth of the poses and the output folder.
+
 Six parameters must be set, according to the dataset used:
 - **distance_lower_bound** the lower bound for radius search in meters
 - **distance_upper_bound** the upper bound for radius search in meters
@@ -69,7 +71,9 @@ Six parameters must be set, according to the dataset used:
 - **max_angular_difference** the maximum angle difference
 
 ### test.cfg
-In this file, only the translation_axis are set, depending on the dataset, in order to display the results.
+In this file, you can set the dataset, the path to the file that contains the pairs created and the path to the file of the ground truth poses.
+
+Here, only translation_axis are set, depending on the dataset, in order to display the results.
 
 ## Input
 The input is the path to the ground truth of the poses.
@@ -83,7 +87,7 @@ It outputs three files:
 ## Test
 To run the test, after the creation of the three outputs, the following command can be used
 ```
-python src/test.py --cfg /cfg/test.cfg --input-pairs /path/to/output/pairs/ --input-poses /path/to/poses/ground/truth/
+python src/test.py --cfg /cfg/test.cfg
 ```
 
 ### Test with KITTI sequence 00
