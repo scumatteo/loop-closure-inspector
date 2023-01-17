@@ -44,7 +44,20 @@ if __name__ == '__main__':
 
     #read dataset
     dataset = dataset_factory(cfg["settings"]["use"])
-    poses = dataset.read_file(cfg["settings"]["input_poses"])
+
+    input = eval(cfg["settings"]["input_poses"])
+    labels = eval(cfg["settings"]["labels"])
+    sequences_len = []
+    if type(input) == list:
+        poses = pd.DataFrame()
+        for path in input:
+            seq = dataset.read_file(path)
+            sequences_len.append(len(seq))
+            poses = pd.concat([poses, seq])
+    else:
+        poses = dataset.read_file(input)
+        
+    print(labels)
 
     #get translations to draw
     translation_axis = cfg[cfg["settings"]["use"]]["translation_axis"].split(",")
@@ -68,13 +81,21 @@ if __name__ == '__main__':
 
     x = translations[:, [0]]
     y = translations[:, [1]]
+    
+    colors = [None, "tomato"]
 
     #plot the poses
-    plt.plot(x, y)
+    start = 0
+    for i in range(len(sequences_len)):
+        plt.plot(x[start:start+sequences_len[i]], y[start:start+sequences_len[i]], c=colors[i], label=labels[i])
+        plt.xlabel("x (m)")
+        plt.ylabel("z (m)")
+        start += sequences_len[i]
 
     #plot the correspondences
     indices, _ = np.where(loop_gt > 0)
     x_coord = x[indices]
     y_coord = y[indices]
-    plt.scatter(x_coord, y_coord, color = "red")
+    plt.scatter(x_coord, y_coord, c="#51f00e", label="matches")
+    plt.legend()
     plt.savefig("img.png")

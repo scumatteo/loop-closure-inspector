@@ -100,6 +100,14 @@ Example with the sequence 08 of the KITTI dataset. In this case the camera retur
 
 ![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/kitti_08_loop.png?raw=true)
 
+## Datasets available
+The tool is able to handle the following datasets:
+- [X] KITTI odometry dataset
+- [X] OpenLoris-Scene dataset
+- [X] TUM RGB-D dataset
+
+In the future new datasets will be added.
+
 
 
 
