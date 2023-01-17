@@ -11,8 +11,8 @@ def _angle_difference(a1, a2):
     Returns:
         (float): the angular distance
     """
-    a1 = a1 + 360 if a1 < 0 else a1  # \in [0,360) now
-    a2 = a2 + 360 if a2 < 0 else a2  # \in [0,360) now
+    a1 = a1 + 360 if a1 < 0 else a1  # in [0,360) now
+    a2 = a2 + 360 if a2 < 0 else a2  # in [0,360) now
     difference = (a2 - a1 + 180) % 360 - 180
     return abs(difference)
 

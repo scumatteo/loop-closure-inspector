@@ -46,7 +46,7 @@ def write(output_folder, pairs, dim):
     f = open(os.path.join(output_folder, "pairs.txt"), "a")
     for p in pairs:
         mat[p[0], p[1]] = 1
-        f.write("(" + str(p[0]) + "," + str(p[1]) + ")\n")
+        f.write(str(p[0]) + "," + str(p[1]) + "\n")
     f.close()
 
     np.save("matrix.npy", mat)

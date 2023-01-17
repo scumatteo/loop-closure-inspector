@@ -5,6 +5,8 @@ import sys
 from datasets.KITTI_dataset import KITTIDataset
 from datasets.OpenLoris_dataset import OpenLorisDataset
 from datasets.TUM_dataset import TUMDataset
+
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
@@ -42,17 +44,19 @@ if __name__ == '__main__':
 
     #read dataset
     dataset = dataset_factory(cfg["settings"]["use"])
-    poses = dataset.read_file(cfg["settings"]["input-poses"])
+    poses = dataset.read_file(cfg["settings"]["input_poses"])
 
     #get translations to draw
     translation_axis = cfg[cfg["settings"]["use"]]["translation_axis"].split(",")
     translations = dataset.get_translations(poses, translation_axis)
 
     #read pairs
-    f_pairs = open(cfg["settings"]["input-pairs"])
+    """ f_pairs = open(cfg["settings"]["input-pairs"])
     pairs = f_pairs.readlines()
     pairs = [pair.replace("\n", "") for pair in pairs]
-    pairs = [tuple(map(int, pair.replace("(", "").replace(")", "").split(","))) for pair in pairs]
+    pairs = [tuple(map(int, pair.replace("(", "").replace(")", "").split(","))) for pair in pairs] """
+    pairs = pd.read_csv(cfg["settings"]["input_pairs"], sep=",").to_numpy()
+    
 
     #set indices to draw
     size = len(poses)
