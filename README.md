@@ -18,25 +18,25 @@ To a better understanding, consider the following example.
 
 A ground truth for the poses is given, corresponding to the path below (the blue line). The arrow shows the direction of the robot while the red point is the pose to which the algorithm is searching a possible loop closure.
 
-![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop.png?raw=true)
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/images/loop.png?raw=true)
 
 First, a search on a radius distance is done. So every point outside the red circle can be discarded.
 
-![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_radius.png?raw=true)
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/images/loop_radius.png?raw=true)
 
 Second, a search on the orientation is done. Only the points inside the circle with the same orientation of the point are kept.
 
-![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_angle.png?raw=true)
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/images/loop_angle.png?raw=true)
 
 Lastly, only the poses occurred after o before n frame are kept, in order to discard points that are close in time but not loop closures. The green poses are the candidates that can be considered loop closures for the red point.
 
-![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/loop_final.png?raw=true)
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/images/loop_final.png?raw=true)
 
 ## Negative example
 
 Contrary to the previous example, in this case the robot returns to a place but it moves in the opposite direction (purple point). In this case, the loop closure is not detected.
 
-![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/no_loop.png?raw=true)
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/images/no_loop.png?raw=true)
 
 # Requirements
 To install the requirements use the following command:
@@ -93,12 +93,12 @@ python src/test.py --cfg /cfg/test.cfg
 ### Test with KITTI sequence 00
 Example with the sequence 00 of the KITTI dataset. The red points are the poses in which the camera pass a second time, in the same direction. So they are the loop closures matches.
 
-![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/kitti_00_loop.png?raw=true)
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/images/kitti_00_loop.png?raw=true)
 
 ### Test with KITTI sequence 08
 Example with the sequence 08 of the KITTI dataset. In this case the camera returns more times to the same places, but it moves with a different orientation, therefore no loop closure is detected.
 
-![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/img/kitti_08_loop.png?raw=true)
+![alt text](https://github.com/scumatteo/loop-closure-inspector/blob/main/images/kitti_08_loop.png?raw=true)
 
 ## Datasets available
 The tool is able to handle the following datasets:
